@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(PlayerMotor))] //calling playermotor script
+
 
 public class PlayerController : MonoBehaviour {
 
-    public float speed = 5f;
-    public float LookSensitivity = 3f; 
+    public float speed;
+    public float LookSensitivity; 
 
     private PlayerMotor motor;
 
@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour {
         float xMove = Input.GetAxisRaw("Horizontal");
         float zMove = Input.GetAxisRaw("Vertical");
 
-        Vector3 MoveHorizontal = transform.right * xMove;
-        Vector3 MoveVertical = transform.forward * zMove;
+        Vector3 MoveHorizontal = transform.forward * xMove;
+        Vector3 MoveVertical = transform.right * zMove;
         Vector3 _velocity = (MoveHorizontal + MoveVertical).normalized * speed; 
         motor.Move(_velocity); //Move, defined in PlayerMotor
 
