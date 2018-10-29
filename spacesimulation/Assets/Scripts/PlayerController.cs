@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(PlayerMotor))]
+
 
 public class PlayerController : MonoBehaviour {
 
     public float speed;
     public float LookSensitivity; 
 
-    private PlayerMotor motor;
+   
     private Rigidbody rb;
     public float velocity;
 
     void Start()
     {
-        motor = GetComponent<PlayerMotor>(); //fetch playmotor from game object
+       
         rb = GetComponent<Rigidbody>();
     }
 
@@ -51,20 +51,6 @@ public class PlayerController : MonoBehaviour {
        
 
 
-        /*
-         *  camera, mouse work
-         */
-        /*
-        //playerrotation, didnt want camera to move as fast as speed or velocity, new float. 
-        //float yRot = Input.GetAxisRaw("Mouse X"); 
-        Vector3 _rotation = new Vector3(0f, Input.GetAxisRaw("Mouse X"), 0f) * LookSensitivity;  // change 
-        motor.Rotate(_rotation);
-        
-        
-        //camerarotation 
-        //float xRot = Input.GetAxisRaw("Mouse Y");
-        Vector3 _cameraRotation = new Vector3(Input.GetAxisRaw("Mouse Y"), 0f, 0f) * LookSensitivity; //change 
-        motor.RotateCamera(_cameraRotation);
-        */
+       
     }
 }
