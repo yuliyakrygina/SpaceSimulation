@@ -4,54 +4,41 @@ using UnityEngine;
 
 
 
-
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     public float speed;
+
     public float LookSensitivity;
-    //public float velocity;
-   
-    private Rigidbody rb;
-   
+
+    private PlayerMotor motor;
 
     void Start()
     {
-       
-        rb = GetComponent<Rigidbody>();
+        motor = GetComponent<PlayerMotor>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-  
-
-       
-        if (Input.GetKey(KeyCode.UpArrow)){ //doesnt need vector3 because it is just going up or down
-
-            rb.velocity = -transform.right * speed * Time.fixedDeltaTime;  // rigidbody.velocity = transform.up * speed * Time.DeltaTime 
-
-        }
-        if (Input.GetKey(KeyCode.DownArrow)){
-
-            rb.velocity = transform.right * speed * Time.fixedDeltaTime; // rigidbody.velocity = -transformup * speed * Time.DeltaTime
-
-        }
-        if (Input.GetKey(KeyCode.LeftArrow)) //spinning on y axis 
-        {
-            transform.Rotate(new Vector3(0, 1, 0) * speed * Time.fixedDeltaTime, Space.World); //transform.Rotate(new Vector3(0,0,1) * velocity * Time.DeltaTime, Space.World)
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.Rotate(new Vector3(0, -1, 0) * speed * Time.fixedDeltaTime, Space.World); //Move the object upward in world space 1 unit/second.
-
-        }
-        if (Input.GetKey(KeyCode.Space)) //figure out 
-        {
-
-            rb.velocity = new Vector3(-1, 0, 0) * speed * Time.fixedDeltaTime;
-        }
-       
 
 
-       
+        float xMove = Input.GetAxisRaw("Horizontal");
+        float zMove = Input.GetAxisRaw("Vertical");
+
+        Vector3 MoveHorizontal = transform.right * xMove;
+        Vector3 MoveVertical = transform.forward * zMove;
+
+        Vector3 _velocity = (MoveHorizontal + MoveVertical).normalized * speed;
+        motor.Move(_velocity);
+
+
+        float yRot = Input.GetAxisRaw("Mouse X");
+        Vector3 _rotation = new Vector3(0f, yRot, 0f) * LookSensitivity;
+        motor.Rotate(_rotation);
+
+
+        float xRot = Input.GetAxisRaw("Mouse Y");
+        Vector3 _cameraRotation = new Vector3(xRot, 0f, 0f) * LookSensitivity;
+        motor.RotateCamera(_cameraRotation);
     }
 }

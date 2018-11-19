@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class SpinController : MonoBehaviour {
 
-	void Start () {
-		
-	}
+    public float SpinSpeed; 
+
 	
-	void Update () {
-        transform.Rotate(0, 0.5f, 0);
+	void FixedUpdate () {
+        transform.Rotate(0, SpinSpeed, 0);
 	}
 }
