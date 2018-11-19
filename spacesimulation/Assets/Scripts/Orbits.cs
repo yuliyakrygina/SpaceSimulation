@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Orbits : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    public GameObject sun;
+    public float speed; 
+
+	void FixedUpdate () {
+
+        transform.RotateAround(Vector3.zero, new Vector3(0, 1, 0), speed * Time.deltaTime);
 		
 	}
 }
