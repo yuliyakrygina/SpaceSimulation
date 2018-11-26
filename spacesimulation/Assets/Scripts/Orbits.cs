@@ -5,11 +5,26 @@ using UnityEngine;
 public class Orbits : MonoBehaviour {
 
     public GameObject sun;
-    public float speed; 
+    public float speed;
+    Vector3 spin = new Vector3(0, 1, 0);
 
-	void FixedUpdate () {
 
-        transform.RotateAround(Vector3.zero, new Vector3(0, 1, 0), speed * Time.deltaTime);
+    private void Start()
+    {
+        
+    }
+
+    void playerorbit()
+    {
+        transform.RotateAround(Vector3.zero, spin, speed * Time.deltaTime);
+    }
+
+
+
+
+    void FixedUpdate () {
+
+        playerorbit();
 		
 	}
 }
