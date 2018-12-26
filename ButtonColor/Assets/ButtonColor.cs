@@ -10,6 +10,8 @@ public class ButtonColor : MonoBehaviour
 {
     private Button theButton;
     private ColorBlock theColor;
+    public bool isGreen;
+    public bool isRed;
 
    
     void Awake()
@@ -19,14 +21,29 @@ public class ButtonColor : MonoBehaviour
 
     }
 
-    public void ButtonTransitionColors()
+    public void ButtonTransitionColor()
     {
-        theColor.normalColor = Color.green;
-        theColor.highlightedColor = Color.green;
-        theColor.pressedColor = Color.green;
-        theButton.colors = theColor;
+        if (isGreen)
+        {
+            //theColor.normalColor = Color.green;
+            theColor.highlightedColor = Color.green;
+            //theColor.pressedColor = Color.green;
+            theButton.colors = theColor;
 
-        print("Cliked");
+            print("Clicked");
+        }
+
+        if (isRed)
+        {
+            theColor.highlightedColor = Color.red;
+            //theColor.pressedColor = Color.red;
+            theButton.colors = theColor;
+
+            print("Clicked");
+        }
     }
+
+  
+   
 }
    
